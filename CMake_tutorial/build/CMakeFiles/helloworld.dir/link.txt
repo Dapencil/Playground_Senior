@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/helloworld.dir/main.cpp.o -o helloworld  lib/libmylib.a /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 /usr/local/lib/libseal-4.1.a -Wl,--as-needed 

@@ -1,0 +1,6 @@
+/home/senior/Desktop/CPP_Learning/CMake_tutorial/build/CMakeFiles/helloworld.dir
+/home/senior/Desktop/CPP_Learning/CMake_tutorial/build/CMakeFiles/edit_cache.dir
+/home/senior/Desktop/CPP_Learning/CMake_tutorial/build/CMakeFiles/rebuild_cache.dir
+/home/senior/Desktop/CPP_Learning/CMake_tutorial/build/lib/CMakeFiles/mylib.dir
+/home/senior/Desktop/CPP_Learning/CMake_tutorial/build/lib/CMakeFiles/edit_cache.dir
+/home/senior/Desktop/CPP_Learning/CMake_tutorial/build/lib/CMakeFiles/rebuild_cache.dir
