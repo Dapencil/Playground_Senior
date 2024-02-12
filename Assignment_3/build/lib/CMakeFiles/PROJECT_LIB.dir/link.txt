@@ -1,2 +1,2 @@
-/usr/bin/ar qc libPROJECT_LIB.a CMakeFiles/PROJECT_LIB.dir/Util.cpp.o
+/usr/bin/ar qc libPROJECT_LIB.a CMakeFiles/PROJECT_LIB.dir/Util.cpp.o CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o CMakeFiles/PROJECT_LIB.dir/Model.cpp.o
 /usr/bin/ranlib libPROJECT_LIB.a

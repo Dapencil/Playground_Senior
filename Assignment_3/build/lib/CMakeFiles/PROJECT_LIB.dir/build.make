@@ -83,17 +83,97 @@ lib/CMakeFiles/PROJECT_LIB.dir/Util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT_LIB.dir/Util.cpp.s"
 	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/senior/Desktop/CPP_Learning/Assignment_3/lib/Util.cpp -o CMakeFiles/PROJECT_LIB.dir/Util.cpp.s
 
+lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/flags.make
+lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o: ../lib/InputLayer.cpp
+lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o -MF CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o.d -o CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o -c /home/senior/Desktop/CPP_Learning/Assignment_3/lib/InputLayer.cpp
+
+lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.i"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/senior/Desktop/CPP_Learning/Assignment_3/lib/InputLayer.cpp > CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.i
+
+lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.s"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/senior/Desktop/CPP_Learning/Assignment_3/lib/InputLayer.cpp -o CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.s
+
+lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/flags.make
+lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o: ../lib/LinearLayer.cpp
+lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o -MF CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o.d -o CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o -c /home/senior/Desktop/CPP_Learning/Assignment_3/lib/LinearLayer.cpp
+
+lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.i"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/senior/Desktop/CPP_Learning/Assignment_3/lib/LinearLayer.cpp > CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.i
+
+lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.s"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/senior/Desktop/CPP_Learning/Assignment_3/lib/LinearLayer.cpp -o CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.s
+
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/flags.make
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o: ../lib/ActivationLayer.cpp
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o -MF CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o.d -o CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o -c /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationLayer.cpp
+
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.i"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationLayer.cpp > CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.i
+
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.s"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationLayer.cpp -o CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.s
+
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/flags.make
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o: ../lib/ActivationFunctions.cpp
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o -MF CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o.d -o CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o -c /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationFunctions.cpp
+
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.i"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationFunctions.cpp > CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.i
+
+lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.s"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationFunctions.cpp -o CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.s
+
+lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/flags.make
+lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.o: ../lib/Model.cpp
+lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.o: lib/CMakeFiles/PROJECT_LIB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.o"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.o -MF CMakeFiles/PROJECT_LIB.dir/Model.cpp.o.d -o CMakeFiles/PROJECT_LIB.dir/Model.cpp.o -c /home/senior/Desktop/CPP_Learning/Assignment_3/lib/Model.cpp
+
+lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJECT_LIB.dir/Model.cpp.i"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/senior/Desktop/CPP_Learning/Assignment_3/lib/Model.cpp > CMakeFiles/PROJECT_LIB.dir/Model.cpp.i
+
+lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT_LIB.dir/Model.cpp.s"
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/senior/Desktop/CPP_Learning/Assignment_3/lib/Model.cpp -o CMakeFiles/PROJECT_LIB.dir/Model.cpp.s
+
 # Object files for target PROJECT_LIB
 PROJECT_LIB_OBJECTS = \
-"CMakeFiles/PROJECT_LIB.dir/Util.cpp.o"
+"CMakeFiles/PROJECT_LIB.dir/Util.cpp.o" \
+"CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o" \
+"CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o" \
+"CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o" \
+"CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o" \
+"CMakeFiles/PROJECT_LIB.dir/Model.cpp.o"
 
 # External object files for target PROJECT_LIB
 PROJECT_LIB_EXTERNAL_OBJECTS =
 
 lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/Util.cpp.o
+lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o
+lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o
+lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o
+lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o
+lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.o
 lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/build.make
 lib/libPROJECT_LIB.a: lib/CMakeFiles/PROJECT_LIB.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libPROJECT_LIB.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libPROJECT_LIB.a"
 	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && $(CMAKE_COMMAND) -P CMakeFiles/PROJECT_LIB.dir/cmake_clean_target.cmake
 	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PROJECT_LIB.dir/link.txt --verbose=$(VERBOSE)
 

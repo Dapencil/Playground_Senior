@@ -13,10 +13,15 @@ private:
     vector<double> _biases;
 
 public:
+    ~LinearLayer(){};
     LinearLayer(int inputSize,
-                int outputSize,
-                vector<vector<double>> weights,
+                int outputSize);
+
+    LinearLayer(vector<vector<double>> weights,
                 vector<double> biases);
 
     vector<double> forward(const vector<double> &inputVector) override;
+    void printLayer() const override;
+    void printWeight() const;
+    void printBias() const;
 };

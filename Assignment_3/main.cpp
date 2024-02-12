@@ -1,11 +1,47 @@
 #include "seal/seal.h"
-#include "lib/header/Util.h"
+#include "Util.h"
+#include "Model.h"
+#include "LinearLayer.h"
+#include "ActivationLayer.h"
+#include "InputLayer.h"
+#include "ActivationFunctions.h"
 
 using namespace std;
 using namespace seal;
 
 int main()
 {
+
+    // Create a Model
+    Model neuralNetworkModel;
+
+    // Create layers and add them to the model
+    Layer *inputLayer = new InputLayer(2); // Assuming InputLayer is a derived class of Layer
+    vector<vector<double>> weight =
+        {{1.0, 2.0},
+         {1.0, 2.0}};
+    vector<double> biases = {1, 3};
+    Layer *hiddenLayer = new LinearLayer(weight, biases);
+
+    // Create an ActivationLayer with ReLU function
+    ActivationLayer *reluLayer = new ActivationLayer(ActivationFunctions::relu, "ReLU");
+
+    neuralNetworkModel.addLayer(inputLayer);
+    neuralNetworkModel.addLayer(hiddenLayer);
+    neuralNetworkModel.addLayer(reluLayer);
+
+    // Perform a forward pass
+    std::vector<double> input = {1.0, 2.0};
+    std::vector<double> output = neuralNetworkModel.forward(input);
+
+    // Print the model
+    neuralNetworkModel.printModel();
+    printVector(output);
+    ((LinearLayer *)hiddenLayer)->printBias();
+
+    return 0;
+
+    /*
     // Initialize Microsoft SEAL context, keys, encryptor, evaluator, decryptor, etc.
     EncryptionParameters parms(scheme_type::ckks);
     size_t poly_modulus_degree = 8192;
@@ -88,4 +124,5 @@ int main()
     // printVector(resultAP_3);
 
     return 0;
+    */
 }

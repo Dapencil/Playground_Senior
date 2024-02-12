@@ -367,4 +367,10 @@ CMakeFiles/assign3.dir/main.cpp.o: \
  /usr/local/include/SEAL-4.1/seal/relinkeys.h \
  /usr/local/include/SEAL-4.1/seal/keygenerator.h \
  /usr/local/include/SEAL-4.1/seal/randomtostd.h \
- /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/Util.h
+ /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/Util.h \
+ /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/Model.h \
+ /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/Layer.h \
+ /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/LinearLayer.h \
+ /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/ActivationLayer.h \
+ /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/InputLayer.h \
+ /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/ActivationFunctions.h

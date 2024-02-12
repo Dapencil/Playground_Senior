@@ -130,6 +130,126 @@ PROJECT_LIB/fast:
 	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/build
 .PHONY : PROJECT_LIB/fast
 
+ActivationFunctions.o: ActivationFunctions.cpp.o
+.PHONY : ActivationFunctions.o
+
+# target to build an object file
+ActivationFunctions.cpp.o:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o
+.PHONY : ActivationFunctions.cpp.o
+
+ActivationFunctions.i: ActivationFunctions.cpp.i
+.PHONY : ActivationFunctions.i
+
+# target to preprocess a source file
+ActivationFunctions.cpp.i:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.i
+.PHONY : ActivationFunctions.cpp.i
+
+ActivationFunctions.s: ActivationFunctions.cpp.s
+.PHONY : ActivationFunctions.s
+
+# target to generate assembly for a file
+ActivationFunctions.cpp.s:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.s
+.PHONY : ActivationFunctions.cpp.s
+
+ActivationLayer.o: ActivationLayer.cpp.o
+.PHONY : ActivationLayer.o
+
+# target to build an object file
+ActivationLayer.cpp.o:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o
+.PHONY : ActivationLayer.cpp.o
+
+ActivationLayer.i: ActivationLayer.cpp.i
+.PHONY : ActivationLayer.i
+
+# target to preprocess a source file
+ActivationLayer.cpp.i:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.i
+.PHONY : ActivationLayer.cpp.i
+
+ActivationLayer.s: ActivationLayer.cpp.s
+.PHONY : ActivationLayer.s
+
+# target to generate assembly for a file
+ActivationLayer.cpp.s:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.s
+.PHONY : ActivationLayer.cpp.s
+
+InputLayer.o: InputLayer.cpp.o
+.PHONY : InputLayer.o
+
+# target to build an object file
+InputLayer.cpp.o:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.o
+.PHONY : InputLayer.cpp.o
+
+InputLayer.i: InputLayer.cpp.i
+.PHONY : InputLayer.i
+
+# target to preprocess a source file
+InputLayer.cpp.i:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.i
+.PHONY : InputLayer.cpp.i
+
+InputLayer.s: InputLayer.cpp.s
+.PHONY : InputLayer.s
+
+# target to generate assembly for a file
+InputLayer.cpp.s:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/InputLayer.cpp.s
+.PHONY : InputLayer.cpp.s
+
+LinearLayer.o: LinearLayer.cpp.o
+.PHONY : LinearLayer.o
+
+# target to build an object file
+LinearLayer.cpp.o:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.o
+.PHONY : LinearLayer.cpp.o
+
+LinearLayer.i: LinearLayer.cpp.i
+.PHONY : LinearLayer.i
+
+# target to preprocess a source file
+LinearLayer.cpp.i:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.i
+.PHONY : LinearLayer.cpp.i
+
+LinearLayer.s: LinearLayer.cpp.s
+.PHONY : LinearLayer.s
+
+# target to generate assembly for a file
+LinearLayer.cpp.s:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/LinearLayer.cpp.s
+.PHONY : LinearLayer.cpp.s
+
+Model.o: Model.cpp.o
+.PHONY : Model.o
+
+# target to build an object file
+Model.cpp.o:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.o
+.PHONY : Model.cpp.o
+
+Model.i: Model.cpp.i
+.PHONY : Model.i
+
+# target to preprocess a source file
+Model.cpp.i:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.i
+.PHONY : Model.cpp.i
+
+Model.s: Model.cpp.s
+.PHONY : Model.s
+
+# target to generate assembly for a file
+Model.cpp.s:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/Model.cpp.s
+.PHONY : Model.cpp.s
+
 Util.o: Util.cpp.o
 .PHONY : Util.o
 
@@ -163,6 +283,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... PROJECT_LIB"
+	@echo "... ActivationFunctions.o"
+	@echo "... ActivationFunctions.i"
+	@echo "... ActivationFunctions.s"
+	@echo "... ActivationLayer.o"
+	@echo "... ActivationLayer.i"
+	@echo "... ActivationLayer.s"
+	@echo "... InputLayer.o"
+	@echo "... InputLayer.i"
+	@echo "... InputLayer.s"
+	@echo "... LinearLayer.o"
+	@echo "... LinearLayer.i"
+	@echo "... LinearLayer.s"
+	@echo "... Model.o"
+	@echo "... Model.i"
+	@echo "... Model.s"
 	@echo "... Util.o"
 	@echo "... Util.i"
 	@echo "... Util.s"

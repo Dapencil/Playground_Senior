@@ -9,7 +9,9 @@ private:
     int inputDim;
 
 public:
-    explicit InputLayer(int inputSize);
+    InputLayer(int inputSize);
+    ~InputLayer(){};
 
     std::vector<double> forward(const std::vector<double> &input) override;
+    void printLayer() const;
 };

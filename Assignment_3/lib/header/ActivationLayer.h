@@ -3,15 +3,19 @@
 #include "Layer.h"
 #include <vector>
 #include <functional>
-
-using namespace std;
+#include <string>
 
 class ActivationLayer : public Layer
 {
 private:
-    function<double(double)> activationFunction;
+    std::function<double(double)> activationFunction;
+    std::string _name;
 
 public:
-    explicit ActivationLayer(function<double(double)> activation);
-    vector<double> forward(const vector<double> &input) override;
+    explicit ActivationLayer(std::function<double(double)> activation,
+                             const std::string &functionName);
+    ~ActivationLayer(){};
+
+    std::vector<double> forward(const std::vector<double> &input) override;
+    void printLayer() const override;
 };
