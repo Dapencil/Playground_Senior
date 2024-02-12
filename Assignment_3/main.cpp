@@ -1,16 +1,8 @@
 #include "seal/seal.h"
+#include "lib/header/Util.h"
 
 using namespace std;
 using namespace seal;
-
-void printVector(const vector<double> &vec)
-{
-    for (int num : vec)
-    {
-        cout << num << " ";
-    }
-    cout << endl;
-}
 
 int main()
 {
@@ -90,6 +82,7 @@ int main()
     // Display the result
     cout << "Decrypted" << endl;
     printVector(result);
+    cout << result.size() << endl;
     // printVector(resultAP_1);
     // printVector(resultAP_2);
     // printVector(resultAP_3);

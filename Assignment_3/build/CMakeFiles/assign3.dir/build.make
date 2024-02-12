@@ -93,6 +93,7 @@ assign3_EXTERNAL_OBJECTS =
 assign3: CMakeFiles/assign3.dir/main.cpp.o
 assign3: CMakeFiles/assign3.dir/build.make
 assign3: /usr/local/lib/libseal-4.1.a
+assign3: lib/libPROJECT_LIB.a
 assign3: CMakeFiles/assign3.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable assign3"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/assign3.dir/link.txt --verbose=$(VERBOSE)

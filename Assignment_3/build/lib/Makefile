@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles /home/senior/Desktop/CPP_Learning/Assignment_3/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles /home/senior/Desktop/CPP_Learning/Assignment_3/build/lib//CMakeFiles/progress.marks
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/senior/Desktop/CPP_Learning/Assignment_3/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,68 +103,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named assign3
+# Convenience name for target.
+lib/CMakeFiles/PROJECT_LIB.dir/rule:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/CMakeFiles/PROJECT_LIB.dir/rule
+.PHONY : lib/CMakeFiles/PROJECT_LIB.dir/rule
 
-# Build rule for target.
-assign3: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assign3
-.PHONY : assign3
-
-# fast build rule for target.
-assign3/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assign3.dir/build.make CMakeFiles/assign3.dir/build
-.PHONY : assign3/fast
-
-#=============================================================================
-# Target rules for targets named PROJECT_LIB
-
-# Build rule for target.
-PROJECT_LIB: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PROJECT_LIB
+# Convenience name for target.
+PROJECT_LIB: lib/CMakeFiles/PROJECT_LIB.dir/rule
 .PHONY : PROJECT_LIB
 
 # fast build rule for target.
 PROJECT_LIB/fast:
-	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/build
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/build
 .PHONY : PROJECT_LIB/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+Util.o: Util.cpp.o
+.PHONY : Util.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assign3.dir/build.make CMakeFiles/assign3.dir/main.cpp.o
-.PHONY : main.cpp.o
+Util.cpp.o:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/Util.cpp.o
+.PHONY : Util.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+Util.i: Util.cpp.i
+.PHONY : Util.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assign3.dir/build.make CMakeFiles/assign3.dir/main.cpp.i
-.PHONY : main.cpp.i
+Util.cpp.i:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/Util.cpp.i
+.PHONY : Util.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+Util.s: Util.cpp.s
+.PHONY : Util.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/assign3.dir/build.make CMakeFiles/assign3.dir/main.cpp.s
-.PHONY : main.cpp.s
+Util.cpp.s:
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(MAKE) $(MAKESILENT) -f lib/CMakeFiles/PROJECT_LIB.dir/build.make lib/CMakeFiles/PROJECT_LIB.dir/Util.cpp.s
+.PHONY : Util.cpp.s
 
 # Help Target
 help:
@@ -175,10 +163,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... PROJECT_LIB"
-	@echo "... assign3"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... Util.o"
+	@echo "... Util.i"
+	@echo "... Util.s"
 .PHONY : help
 
 
@@ -190,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/senior/Desktop/CPP_Learning/Assignment_3/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

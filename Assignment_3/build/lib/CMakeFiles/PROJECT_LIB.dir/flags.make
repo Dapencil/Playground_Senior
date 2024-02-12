@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/senior/Desktop/CPP_Learning/Assignment_3/lib/header -isystem /usr/local/include/SEAL-4.1
+CXX_INCLUDES = 
 
 CXX_FLAGS = 
 
