@@ -9,9 +9,8 @@
 using namespace std;
 using namespace seal;
 
-int main()
+int moduleDL()
 {
-
     // Create a Model
     Model neuralNetworkModel;
 
@@ -40,8 +39,10 @@ int main()
     ((LinearLayer *)hiddenLayer)->printBias();
 
     return 0;
+}
 
-    /*
+int moduleCKKS()
+{
     // Initialize Microsoft SEAL context, keys, encryptor, evaluator, decryptor, etc.
     EncryptionParameters parms(scheme_type::ckks);
     size_t poly_modulus_degree = 8192;
@@ -124,5 +125,13 @@ int main()
     // printVector(resultAP_3);
 
     return 0;
-    */
+}
+
+int main()
+{
+    cout << "== DL Module ==" << endl;
+    moduleDL();
+    cout << endl;
+    cout << "== CKKS Module ==" << endl;
+    moduleCKKS();
 }
