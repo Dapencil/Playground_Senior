@@ -72,7 +72,6 @@ int main()
 
     vector<double> dest(v.size());
     vector<double> result(matrix.size());
-    vector<double> shifted;
     // std::rotate_copy(v.begin(), v.begin() + 1, v.end(), dest.begin());
     // printVector(v);
     // printVector(dest);
@@ -83,6 +82,22 @@ int main()
     // }
     for (int i = 0; i < matrix[0].size(); i++)
     {
-        printVector(extractDiagonal(matrix, i));
+        vector<double> diagWeight;
+        vector<double> mulResult;
+        rotate_copy(v.begin(),
+                    v.begin() + i,
+                    v.end(),
+                    dest.begin());
+        cout << "Rotated input" << endl;
+        printVector(dest);
+        cout << "diag weight" << endl;
+        diagWeight = extractDiagonal(matrix, i);
+        printVector(diagWeight);
+        cout << "Elem-wise mul" << endl;
+        mulResult = elemtwiseMul(diagWeight, dest);
+        printVector(mulResult);
+        cout << "Total Result" << endl;
+        result = elementwiseAdd(result, mulResult);
     }
+    printVector(result);
 }
