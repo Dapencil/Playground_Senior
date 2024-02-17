@@ -1,7 +1,7 @@
 lib/CMakeFiles/PROJECT_LIB.dir/ActivationFunctions.cpp.o: \
- /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationFunctions.cpp \
+ /home/senior/Desktop/Playground_Senior/Assignment_3/lib/ActivationFunctions.cpp \
  /usr/include/stdc-predef.h \
- /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/ActivationFunctions.h \
+ /home/senior/Desktop/Playground_Senior/Assignment_3/lib/header/ActivationFunctions.h \
  /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

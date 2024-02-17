@@ -1,8 +1,8 @@
 lib/CMakeFiles/PROJECT_LIB.dir/ActivationLayer.cpp.o: \
- /home/senior/Desktop/CPP_Learning/Assignment_3/lib/ActivationLayer.cpp \
+ /home/senior/Desktop/Playground_Senior/Assignment_3/lib/ActivationLayer.cpp \
  /usr/include/stdc-predef.h \
- /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/ActivationLayer.h \
- /home/senior/Desktop/CPP_Learning/Assignment_3/lib/header/Layer.h \
+ /home/senior/Desktop/Playground_Senior/Assignment_3/lib/header/ActivationLayer.h \
+ /home/senior/Desktop/Playground_Senior/Assignment_3/lib/header/Layer.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/assign1.dir/main.cpp.o -o assign1  /usr/local/lib/libseal-4.1.a 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/senior/Desktop/CPP_Learning/Assignment_3/lib
+# Install script for directory: /home/senior/Desktop/Playground_Senior/Assignment_3/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

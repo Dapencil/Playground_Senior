@@ -1,3 +1,0 @@
-/home/senior/Desktop/CPP_Learning/Assignment_1/build/CMakeFiles/assign1.dir
-/home/senior/Desktop/CPP_Learning/Assignment_1/build/CMakeFiles/edit_cache.dir
-/home/senior/Desktop/CPP_Learning/Assignment_1/build/CMakeFiles/rebuild_cache.dir
