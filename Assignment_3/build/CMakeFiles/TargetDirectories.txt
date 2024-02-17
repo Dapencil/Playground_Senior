@@ -1,6 +1,0 @@
-/home/senior/Desktop/Playground_Senior/Assignment_3/build/CMakeFiles/assign3.dir
-/home/senior/Desktop/Playground_Senior/Assignment_3/build/CMakeFiles/edit_cache.dir
-/home/senior/Desktop/Playground_Senior/Assignment_3/build/CMakeFiles/rebuild_cache.dir
-/home/senior/Desktop/Playground_Senior/Assignment_3/build/lib/CMakeFiles/PROJECT_LIB.dir
-/home/senior/Desktop/Playground_Senior/Assignment_3/build/lib/CMakeFiles/edit_cache.dir
-/home/senior/Desktop/Playground_Senior/Assignment_3/build/lib/CMakeFiles/rebuild_cache.dir
