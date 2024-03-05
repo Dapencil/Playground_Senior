@@ -34,12 +34,15 @@ int main()
     Decryptor decryptor(context, secret_key);
     CKKSEncoder encoder(context);
 
-    vector<double> modRow1{1.0, 3.0};
-    vector<double> modRow2{2.0, 4.0};
-    vector<vector<double>> matrix{{10, 11},
-                                  {12, 13}};
+    vector<double> modRow1{1.0, 1.0};
+    vector<double> modRow2{1.0, 1.0};
+    vector<vector<double>> matrix{
+        {2.0, 2.0},
+        {2.0, 2.0},
+        {2.0, 2.0},
+    };
 
-    int resultDim = matrix[0].size();
+    int resultDim = matrix.size();
 
     Plaintext encodedRow1, encodedRow2;
     encoder.encode(modRow1, scale, encodedRow1);
@@ -84,6 +87,6 @@ int main()
     {
         decryptor.decrypt(resultCt[i], plainResult);
         encoder.decode(plainResult, vectorResult);
-        printVector(vectorResult, resultDim);
+        printVector(vectorResult, resultDim + 1);
     }
 }
