@@ -10,8 +10,10 @@ class CKKSDense
 {
 public:
     // Constructor
-    CKKSDense(vector<vector<double>> weights)
+    CKKSDense(vector<vector<double>> weights,
+              vector<double> biases)
         : weights_(weights),
+          biases_(biases),
           input_size_(weights[0].size()),
           output_size_(weights.size())
     {
@@ -19,8 +21,7 @@ public:
 
     vector<Ciphertext> forward(const vector<Ciphertext> &input,
                                const CKKSEncoder &encoder_,
-                               const Evaluator &evaluator_,
-                               const double scale_)
+                               const Evaluator &evaluator_)
     {
 
         vector<Ciphertext> result;
@@ -29,13 +30,18 @@ public:
         size_t rowCnt = output_size_;
         size_t colCnt = input_size_;
 
+        // assume that every ct is at the same scale
+        double before_mul_scale = input[0].scale();
+        parms_id_type before_mul_parms_id = input[0].parms_id();
+
         // matrix multiplication
         for (size_t i = 0; i < rowCnt; i++)
         {
             for (size_t j = 0; j < colCnt; j++)
             {
                 Ciphertext mul_result, add_result;
-                encoder_.encode(weights_[i][j], scale_, encoded_weight);
+                encoder_.encode(weights_[i][j], before_mul_scale, encoded_weight);
+                evaluator_.mod_switch_to_inplace(encoded_weight, before_mul_parms_id);
                 evaluator_.multiply_plain(input[j], encoded_weight, mul_result);
                 evaluator_.rescale_to_next_inplace(mul_result);
                 if (j == 0)
@@ -48,6 +54,15 @@ public:
                     output_vector[i] = add_result;
                 }
             }
+            // add bias
+            Ciphertext add_bias_result;
+            parms_id_type last_parms_id = output_vector[i].parms_id();
+            double after_mul_scale = output_vector[i].scale();
+
+            encoder_.encode(biases_[i], after_mul_scale, encoded_bias);
+            evaluator_.mod_switch_to_inplace(encoded_bias, last_parms_id);
+            evaluator_.add_plain(output_vector[i], encoded_bias, add_bias_result);
+            output_vector[i] = add_bias_result;
             result.push_back(output_vector[i]);
         }
         return result;
@@ -58,7 +73,7 @@ private:
     size_t output_size_;
 
     vector<vector<double>> weights_;
-    // vector<double> biases_;
+    vector<double> biases_;
 };
 
 class EncryptedModel
@@ -84,7 +99,7 @@ public:
         for (auto &layer : layers_)
         {
             // TODO: decide about scale
-            current_input = layer.forward(current_input, encoder_, evaluator_, scale_);
+            current_input = layer.forward(current_input, encoder_, evaluator_);
         }
         return current_input;
     }
@@ -103,7 +118,9 @@ private:
         EncryptionParameters parms(scheme_type::ckks);
         parms.set_poly_modulus_degree(poly_modulus_degree);
         // TODO: Need to define properly
+        // limit of multiplicative depth
         parms.set_coeff_modulus(CoeffModulus::Create(poly_modulus_degree, {60, 40, 40, 60}));
+
         return SEALContext(parms);
     }
 };
@@ -277,8 +294,7 @@ int main()
     // TODO: 1. Batching Iuput 2. Encrypt Input
     //                              a    b
     vector<vector<double>> inputs{{1.0, 1.0},
-                                  {1.0, 1.0},
-                                  {1.0, 1.0}}; // for bias term
+                                  {1.0, 1.0}};
     vector<Ciphertext> encrypted_inputs;
     size_t batch_size = 2;
 
@@ -292,18 +308,25 @@ int main()
     }
 
     // Provider Section
-    vector<vector<double>> weights_1{{2.0, 2.0, 1.0},
-                                     {2.0, 2.0, 1.0},
-                                     {2.0, 2.0, 1.0}};
-    CKKSDense layer_1 = CKKSDense(weights_1);
+    vector<vector<double>> weights_1{{2.0, 2.0},
+                                     {2.0, 2.0},
+                                     {2.0, 2.0}};
+    vector<double> biases_1{1.0, 1.0, 1.0};
+    CKKSDense layer_1 = CKKSDense(weights_1, biases_1);
+
+    vector<vector<double>> weights_2{{1.0, 1.0, 1.0}};
+    vector<double> biases_2{0.0, 0.0, 0.0};
+    CKKSDense layer_2 = CKKSDense(weights_2, biases_2);
+
     EncryptedModel model = EncryptedModel(public_key, poly_modulus_degree, scale);
     model.addLayer(layer_1);
+    model.addLayer(layer_2);
     vector<Ciphertext> result_vector = model.predict(encrypted_inputs);
 
     // User Section
     Plaintext decrypted_row_result;
     vector<double> decoded_row_result;
-    int result_dim = 3;
+    int result_dim = 1;
     for (size_t i = 0; i < result_dim; ++i)
     {
         decryptor.decrypt(result_vector[i], decrypted_row_result);
