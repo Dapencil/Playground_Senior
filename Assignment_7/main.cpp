@@ -11,11 +11,13 @@ class CKKSDense
 public:
     // Constructor
     CKKSDense(vector<vector<double>> weights,
-              vector<double> biases)
+              vector<double> biases,
+              bool is_apply_activation = true)
         : weights_(weights),
           biases_(biases),
           input_size_(weights[0].size()),
-          output_size_(weights.size())
+          output_size_(weights.size()),
+          is_apply_activation_(is_apply_activation)
     {
     }
 
@@ -63,6 +65,14 @@ public:
             evaluator_.mod_switch_to_inplace(encoded_bias, last_parms_id);
             evaluator_.add_plain(output_vector[i], encoded_bias, add_bias_result);
             output_vector[i] = add_bias_result;
+
+            // activation function
+            if (is_apply_activation_)
+            {
+                evaluator_.square_inplace(output_vector[i]);
+                evaluator_.rescale_to_next_inplace(output_vector[i]);
+            }
+
             result.push_back(output_vector[i]);
         }
         return result;
@@ -74,17 +84,20 @@ private:
 
     vector<vector<double>> weights_;
     vector<double> biases_;
+
+    bool is_apply_activation_;
 };
 
 class EncryptedModel
 {
 public:
-    EncryptedModel(const PublicKey &public_key, size_t poly_modulus_degree, double scale)
+    EncryptedModel(const PublicKey &public_key,
+                   size_t poly_modulus_degree,
+                   const vector<int> &bits_of_coff)
         : public_key_(public_key),
-          context_(create_context(poly_modulus_degree)),
+          context_(create_context(poly_modulus_degree, bits_of_coff)),
           evaluator_(context_),
-          encoder_(context_),
-          scale_(scale)
+          encoder_(context_)
     {
     }
 
@@ -98,7 +111,6 @@ public:
         vector<Ciphertext> current_input = input;
         for (auto &layer : layers_)
         {
-            // TODO: decide about scale
             current_input = layer.forward(current_input, encoder_, evaluator_);
         }
         return current_input;
@@ -109,17 +121,15 @@ private:
     PublicKey public_key_;
     Evaluator evaluator_;
     CKKSEncoder encoder_;
-    double scale_;
 
     vector<CKKSDense> layers_;
 
-    SEALContext create_context(size_t poly_modulus_degree)
+    SEALContext create_context(size_t poly_modulus_degree, const vector<int> &bits_of_coeff)
     {
         EncryptionParameters parms(scheme_type::ckks);
         parms.set_poly_modulus_degree(poly_modulus_degree);
-        // TODO: Need to define properly
         // limit of multiplicative depth
-        parms.set_coeff_modulus(CoeffModulus::Create(poly_modulus_degree, {60, 40, 40, 60}));
+        parms.set_coeff_modulus(CoeffModulus::Create(poly_modulus_degree, bits_of_coeff));
 
         return SEALContext(parms);
     }
@@ -129,9 +139,11 @@ int main()
 {
     // User Section
     EncryptionParameters parms(scheme_type::ckks);
-    size_t poly_modulus_degree = 8192;
+    // size_t poly_modulus_degree = 8192;
+    size_t poly_modulus_degree = 16384;
+    vector<int> bits_of_coeff{60, 40, 40, 40, 60};
     parms.set_poly_modulus_degree(poly_modulus_degree);
-    parms.set_coeff_modulus(CoeffModulus::Create(poly_modulus_degree, {60, 40, 40, 60}));
+    parms.set_coeff_modulus(CoeffModulus::Create(poly_modulus_degree, bits_of_coeff));
     double scale = pow(2.0, 40);
 
     SEALContext context(parms);
@@ -144,7 +156,7 @@ int main()
     Evaluator evaluator(context);
     Decryptor decryptor(context, secret_key);
     CKKSEncoder encoder(context);
-    // TODO: 1. Batching Iuput 2. Encrypt Input
+    // TODO: 1. Batching Input 2. Encrypt Input
     //                              a    b
     vector<vector<double>> inputs{{1.0, 1.0},
                                   {1.0, 1.0}};
@@ -169,9 +181,9 @@ int main()
 
     vector<vector<double>> weights_2{{1.0, 1.0, 1.0}};
     vector<double> biases_2{0.0, 0.0, 0.0};
-    CKKSDense layer_2 = CKKSDense(weights_2, biases_2);
+    CKKSDense layer_2 = CKKSDense(weights_2, biases_2, false);
 
-    EncryptedModel model = EncryptedModel(public_key, poly_modulus_degree, scale);
+    EncryptedModel model = EncryptedModel(public_key, poly_modulus_degree, bits_of_coeff);
     model.addLayer(layer_1);
     model.addLayer(layer_2);
     vector<Ciphertext> result_vector = model.predict(encrypted_inputs);
@@ -185,5 +197,15 @@ int main()
         decryptor.decrypt(result_vector[i], decrypted_row_result);
         encoder.decode(decrypted_row_result, decoded_row_result);
         printVector(decoded_row_result, batch_size);
+    }
+
+    Plaintext decrypted_input_result;
+    vector<double> decoded_input_result;
+    int input_dim = 2;
+    for (size_t i = 0; i < input_dim; ++i)
+    {
+        decryptor.decrypt(encrypted_inputs[i], decrypted_input_result);
+        encoder.decode(decrypted_input_result, decoded_input_result);
+        printVector(decoded_input_result, batch_size);
     }
 }
