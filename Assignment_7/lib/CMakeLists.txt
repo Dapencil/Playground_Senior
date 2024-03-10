@@ -5,6 +5,7 @@ add_library(PROJECT_LIB
     ActivationLayer.cpp
     ActivationFunctions.cpp
     Model.cpp
+    global.cpp
 )
 
 target_include_directories(PROJECT_LIB INTERFACE header)
