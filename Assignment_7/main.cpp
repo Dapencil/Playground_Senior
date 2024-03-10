@@ -1,10 +1,45 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <algorithm>
 #include "Util.h"
 #include "seal/seal.h"
 
 using namespace std;
 using namespace seal;
+
+vector<vector<double>> readBinaryWeightFile(const string &filename, int numRows, int numCols)
+{
+    ifstream file(filename, ios::binary);
+    if (!file.is_open())
+    {
+        cerr << "Error opening file: " << filename << endl;
+        return {};
+    }
+
+    // Read the binary data into a flat vector of doubles
+    // TODO read wrong ??
+    vector<double> flatData(numRows * numCols);
+    cout << flatData.size() << endl;
+    file.read(reinterpret_cast<char *>(flatData.data()), sizeof(double) * numRows * numCols);
+
+    file.close();
+    cout << count_if(flatData.begin(), flatData.end(), [](double value)
+                     { return value == 0.0; })
+         << endl;
+    // Convert the flat vector to a 2D vector
+    vector<vector<double>> matrix(numRows, vector<double>(numCols));
+
+    for (int i = 0; i < numRows; ++i)
+    {
+        for (int j = 0; j < numCols; ++j)
+        {
+            matrix[i][j] = flatData[i * numCols + j];
+        }
+    }
+
+    return matrix;
+}
 
 class CKKSDense
 {
@@ -20,6 +55,9 @@ public:
           is_apply_activation_(is_apply_activation)
     {
     }
+
+    size_t get_input_size() const { return input_size_; }
+    size_t get_output_size() const { return output_size_; }
 
     vector<Ciphertext> forward(const vector<Ciphertext> &input,
                                const CKKSEncoder &encoder_,
@@ -103,6 +141,8 @@ public:
 
     void addLayer(const CKKSDense &layer)
     {
+        if (!layers_.empty() && layers_.back().get_output_size() != layer.get_input_size())
+            throw invalid_argument("Input size does not match the expected size.");
         layers_.push_back(layer);
     }
 
@@ -173,19 +213,24 @@ int main()
     }
 
     // Provider Section
-    vector<vector<double>> weights_1{{2.0, 2.0},
-                                     {2.0, 2.0},
-                                     {2.0, 2.0}};
-    vector<double> biases_1{1.0, 1.0, 1.0};
-    CKKSDense layer_1 = CKKSDense(weights_1, biases_1);
+    // vector<vector<double>> weights_1{{2.0, 2.0},
+    //                                  {2.0, 2.0},
+    //                                  {2.0, 2.0}};
+    // vector<double> biases_1{1.0, 1.0, 1.0};
+    // CKKSDense layer_1 = CKKSDense(weights_1, biases_1);
 
     vector<vector<double>> weights_2{{1.0, 1.0, 1.0}};
     vector<double> biases_2{0.0, 0.0, 0.0};
     CKKSDense layer_2 = CKKSDense(weights_2, biases_2, false);
+    extern vector<vector<double>> weight_0;
+    extern vector<double> bias_0;
+    CKKSDense layer_0 = CKKSDense(weight_0, bias_0);
 
     EncryptedModel model = EncryptedModel(public_key, poly_modulus_degree, bits_of_coeff);
-    model.addLayer(layer_1);
+    // model.addLayer(layer_1);
     model.addLayer(layer_2);
+    model.addLayer(layer_0);
+    /*
     vector<Ciphertext> result_vector = model.predict(encrypted_inputs);
 
     // User Section
@@ -208,4 +253,5 @@ int main()
         encoder.decode(decrypted_input_result, decoded_input_result);
         printVector(decoded_input_result, batch_size);
     }
+    */
 }
