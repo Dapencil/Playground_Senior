@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "Util.h"
 #include "seal/seal.h"
+#include "weights.pb.h"
 
 using namespace std;
 using namespace seal;
@@ -18,27 +19,28 @@ vector<vector<double>> readBinaryWeightFile(const string &filename, int numRows,
     }
 
     // Read the binary data into a flat vector of doubles
-    // TODO read wrong ??
-    vector<double> flatData(numRows * numCols);
-    cout << flatData.size() << endl;
-    file.read(reinterpret_cast<char *>(flatData.data()), sizeof(double) * numRows * numCols);
-
+    string serialized_data((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
     file.close();
-    cout << count_if(flatData.begin(), flatData.end(), [](double value)
-                     { return value == 0.0; })
-         << endl;
-    // Convert the flat vector to a 2D vector
-    vector<vector<double>> matrix(numRows, vector<double>(numCols));
+    Weights weights;
+
+    if (!weights.ParseFromString(serialized_data))
+    {
+        cerr << "Failed to parse serialized data." << std::endl;
+        return {};
+    }
+    vector<vector<double>> weight_data;
 
     for (int i = 0; i < numRows; ++i)
     {
+        vector<double> row;
         for (int j = 0; j < numCols; ++j)
         {
-            matrix[i][j] = flatData[i * numCols + j];
+            row.push_back(weights.values((i * (numCols - 1)) + j));
         }
+        weight_data.push_back(row);
     }
 
-    return matrix;
+    return weight_data;
 }
 
 class CKKSDense
@@ -224,12 +226,18 @@ int main()
     CKKSDense layer_2 = CKKSDense(weights_2, biases_2, false);
     extern vector<vector<double>> weight_0;
     extern vector<double> bias_0;
-    CKKSDense layer_0 = CKKSDense(weight_0, bias_0);
+    vector<vector<double>> weight_00 = readBinaryWeightFile("../weight_0.bin", 1024, 784);
+    CKKSDense layer_0 = CKKSDense(weight_00, bias_0);
+    cout << layer_0.get_input_size() << endl;
+    cout << layer_0.get_output_size() << endl;
+
+    printVector(weight_00[0], 784);
 
     EncryptedModel model = EncryptedModel(public_key, poly_modulus_degree, bits_of_coeff);
     // model.addLayer(layer_1);
-    model.addLayer(layer_2);
+    // model.addLayer(layer_2);
     model.addLayer(layer_0);
+
     /*
     vector<Ciphertext> result_vector = model.predict(encrypted_inputs);
 

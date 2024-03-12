@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message Weights {
+    repeated double values = 1;
+}
