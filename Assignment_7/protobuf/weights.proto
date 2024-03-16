@@ -1,5 +1,13 @@
 syntax = "proto3";
 
-message Weights {
+message Weight {
     repeated double values = 1;
+}
+
+message Bias {
+    repeated double values = 1;
+}
+
+message Instance {
+  repeated double values = 1;
 }
