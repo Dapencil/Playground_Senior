@@ -100,7 +100,7 @@ vector<vector<double>> readBinaryInputFile(const string &filename, int numRows, 
         vector<double> row;
         for (int j = 0; j < numCols; ++j)
         {
-            row.push_back(vector_proto.values((j * (numRows - 1)) + j));
+            row.push_back(vector_proto.values(((j * numRows) + i)));
         }
         input_data.push_back(row);
     }
