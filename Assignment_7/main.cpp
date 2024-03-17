@@ -392,6 +392,15 @@ int main()
         }
     */
     // Write prediction
-    vector<vector<double>> pred = {{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0}};
+    vector<vector<double>> pred = {
+        {1.0, 2.0},
+        {1.0, 2.0},
+        {1.0, 2.0},
+        {1.0, 2.0},
+        {1.0, 2.0},
+        {1.0, 2.0},
+        {1.0, 2.0},
+        {1.0, 2.0},
+    };
     writePredictionFile("../pred_dummy.bin", pred);
 }
