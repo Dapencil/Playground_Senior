@@ -4,11 +4,12 @@
 #include <algorithm>
 #include "Util.h"
 #include "seal/seal.h"
-#include "weights.pb.h"
+#include "senior.pb.h"
 
 using namespace std;
 using namespace seal;
 
+/*
 vector<vector<double>> readBinaryWeightFile(const string &filename, int numRows, int numCols)
 {
     ifstream file(filename, ios::binary);
@@ -70,6 +71,60 @@ vector<double> readBinaryBiasFile(const string &filename, int numCols)
     }
 
     return bias_data;
+}
+*/
+
+vector<vector<double>> readBinaryInputFile(const string &filename, int numRows, int numCols)
+{
+    ifstream file(filename, ios::binary);
+    if (!file.is_open())
+    {
+        cerr << "Error opening file: " << filename << endl;
+        return {};
+    }
+
+    // Read the binary data into a flat vector of doubles
+    string serialized_data((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    file.close();
+    InputVector vector_proto;
+
+    if (!vector_proto.ParseFromString(serialized_data))
+    {
+        cerr << "Failed to parse serialized data." << std::endl;
+        return {};
+    }
+    vector<vector<double>> input_data;
+
+    for (int i = 0; i < numRows; ++i)
+    {
+        vector<double> row;
+        for (int j = 0; j < numCols; ++j)
+        {
+            row.push_back(vector_proto.values((j * (numRows - 1)) + j));
+        }
+        input_data.push_back(row);
+    }
+    return input_data;
+}
+
+void writePredictionFile(const string &filename, const vector<vector<double>> &pred)
+{
+    Prediction prediction;
+
+    for (const auto &innerVec : pred)
+    {
+        for (const auto &value : innerVec)
+        {
+            prediction.add_values(value);
+        }
+    }
+
+    // Serialize the Prediction message to a binary file
+    fstream output(filename, ios::out | ios::binary);
+    if (!prediction.SerializeToOstream(&output))
+    {
+        cerr << "Failed to write prediction to binary file." << endl;
+    }
 }
 
 class CKKSDense
@@ -242,24 +297,27 @@ int main()
     Decryptor decryptor(context, secret_key);
     CKKSEncoder encoder(context);
 
+    size_t batch_size = 8192;
+
     // TODO: 1. Batching Input 2. Encrypt Input
     //                              a    b
-    vector<vector<double>> inputs;
-    for (int i = 0; i < 784; ++i)
+    // vector<vector<double>> inputs = readBinaryInputFile("../test_1.bin", 784, batch_size);
+    /*for (int i = 0; i < 784; ++i)
     {
         inputs.push_back({1.0});
     }
-    vector<Ciphertext> encrypted_inputs;
-    size_t batch_size = 1;
+    */
+    /*
+     vector<Ciphertext> encrypted_inputs;
 
-    Plaintext encoded_row;
-    Ciphertext encrypted_row;
-    for (size_t i = 0; i < inputs.size(); ++i)
-    {
-        encoder.encode(inputs[i], scale, encoded_row);
-        encryptor.encrypt(encoded_row, encrypted_row);
-        encrypted_inputs.push_back(encrypted_row);
-    }
+     Plaintext encoded_row;
+     Ciphertext encrypted_row;
+     for (size_t i = 0; i < inputs.size(); ++i)
+     {
+         encoder.encode(inputs[i], scale, encoded_row);
+         encryptor.encrypt(encoded_row, encrypted_row);
+         encrypted_inputs.push_back(encrypted_row);
+     } */
 
     // Provider Section
     // vector<vector<double>> weight_00 = readBinaryWeightFile("../weight_00.bin", 1024, 784);
@@ -279,47 +337,49 @@ int main()
         vector<double> bias_06 = readBinaryBiasFile("../bias_06.bin", 10);
         CKKSDense layer_6 = CKKSDense(weight_06, bias_06, false);
         */
-    extern vector<vector<double>> weight_0;
-    extern vector<double> bias_0;
-    CKKSDense layer_0 = CKKSDense(weight_0, bias_0);
+    /*
+ extern vector<vector<double>> weight_0;
+ extern vector<double> bias_0;
+ CKKSDense layer_0 = CKKSDense(weight_0, bias_0);
 
-    extern vector<vector<double>> weight_2;
-    extern vector<double> bias_2;
-    CKKSDense layer_2 = CKKSDense(weight_2, bias_2);
+ extern vector<vector<double>> weight_2;
+ extern vector<double> bias_2;
+ CKKSDense layer_2 = CKKSDense(weight_2, bias_2);
 
-    extern vector<vector<double>> weight_4;
-    extern vector<double> bias_4;
-    CKKSDense layer_4 = CKKSDense(weight_4, bias_4);
+ extern vector<vector<double>> weight_4;
+ extern vector<double> bias_4;
+ CKKSDense layer_4 = CKKSDense(weight_4, bias_4);
 
-    extern vector<vector<double>> weight_6;
-    extern vector<double> bias_6;
-    CKKSDense layer_6 = CKKSDense(weight_6, bias_6, false);
+ extern vector<vector<double>> weight_6;
+ extern vector<double> bias_6;
+ CKKSDense layer_6 = CKKSDense(weight_6, bias_6, false);
 
-    EncryptedModel model = EncryptedModel(public_key, relin_keys, poly_modulus_degree, bits_of_coeff);
+ EncryptedModel model = EncryptedModel(public_key, relin_keys, poly_modulus_degree, bits_of_coeff);
 
-    model.addLayer(layer_0);
-    model.addLayer(layer_2);
-    model.addLayer(layer_4);
-    model.addLayer(layer_6);
+ model.addLayer(layer_0);
+ model.addLayer(layer_2);
+ model.addLayer(layer_4);
+ model.addLayer(layer_6);
 
-    cout << layer_0.get_input_size() << "," << layer_0.get_output_size() << endl;
-    auto start = chrono::high_resolution_clock::now();
-    cout << "Start computing.." << endl;
-    vector<Ciphertext> result_vector = model.predict(encrypted_inputs);
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::minutes>(end - start);
-    cout << "Total Execution time: " << duration.count() << " minutes" << endl;
+ cout << layer_0.get_input_size() << "," << layer_0.get_output_size() << endl;
+ auto start = chrono::high_resolution_clock::now();
+ cout << "Start computing.." << endl;
+ vector<Ciphertext> result_vector = model.predict(encrypted_inputs);
+ auto end = chrono::high_resolution_clock::now();
+ auto duration = chrono::duration_cast<chrono::minutes>(end - start);
+ cout << "Total Execution time: " << duration.count() << " minutes" << endl;
 
-    // User Section
-    Plaintext decrypted_row_result;
-    vector<double> decoded_row_result;
-    int result_dim = 10;
-    for (size_t i = 0; i < result_dim; ++i)
-    {
-        decryptor.decrypt(result_vector[i], decrypted_row_result);
-        encoder.decode(decrypted_row_result, decoded_row_result);
-        printVector(decoded_row_result, batch_size);
-    }
+ // User Section
+ Plaintext decrypted_row_result;
+ vector<double> decoded_row_result;
+ int result_dim = 10;
+ for (size_t i = 0; i < result_dim; ++i)
+ {
+     decryptor.decrypt(result_vector[i], decrypted_row_result);
+     encoder.decode(decrypted_row_result, decoded_row_result);
+     printVector(decoded_row_result, batch_size);
+ }
+ */
     /*
         Plaintext decrypted_input_result;
         vector<double> decoded_input_result;
@@ -331,4 +391,7 @@ int main()
             printVector(decoded_input_result, batch_size);
         }
     */
+    // Write prediction
+    vector<vector<double>> pred = {{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0}};
+    writePredictionFile("../pred_dummy.bin", pred);
 }

@@ -5,7 +5,7 @@ add_library(PROJECT_LIB
     ActivationLayer.cpp
     ActivationFunctions.cpp
     Model.cpp
-    weights.pb.cc
+    senior.pb.cc
 )
 
 target_include_directories(PROJECT_LIB INTERFACE header)
