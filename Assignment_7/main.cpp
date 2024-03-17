@@ -297,9 +297,9 @@ int main()
     Decryptor decryptor(context, secret_key);
     CKKSEncoder encoder(context);
 
-    size_t batch_size = 8192;
+    size_t batch_size = 10000 - 8192;
     cout << "Start prepare input" << endl;
-    vector<vector<double>> inputs = readBinaryInputFile("../test_1.bin", 784, batch_size);
+    vector<vector<double>> inputs = readBinaryInputFile("../test_2.bin", 784, batch_size);
     vector<Ciphertext> encrypted_inputs;
 
     Plaintext encoded_row;
@@ -364,7 +364,7 @@ int main()
         pred.push_back(decoded_row_result);
     }
 
-    writePredictionFile("../pred.bin", pred);
+    writePredictionFile("../pred_2.bin", pred);
     cout << "Complete write pred" << endl;
 
     // Show example
